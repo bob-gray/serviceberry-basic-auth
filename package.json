@@ -1,0 +1,35 @@
+{
+  "name": "serviceberry-basic-auth",
+  "version": "0.1.0",
+  "description": "Basic HTTP Authentication plugin for Serviceberry",
+  "main": "plugin.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bob-gray/serviceberry-basic-auth.git"
+  },
+  "keywords": [
+    "serviceberry",
+    "http",
+    "api",
+    "webservice",
+    "authentication",
+    "user",
+    "password"
+  ],
+  "author": "Bob Gray <gray.bob98@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bob-gray/serviceberry-basic-auth/issues"
+  },
+  "homepage": "https://github.com/bob-gray/serviceberry-basic-auth#readme",
+  "dependencies": {
+    "basic-auth": "^2.0.0",
+    "bcryptjs": "^2.4.3"
+  },
+  "peerDependencies": {
+      "serviceberry": "^0.2.1"
+  }
+}
