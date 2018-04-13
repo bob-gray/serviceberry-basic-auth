@@ -13,10 +13,11 @@ npm install serviceberry-basic-auth
 Usage
 -----
 
-This plugin exports an abstract class `BasicAuth` for extending. To use this
-plugin extend `BasicAuth` and implement at least `getHash(username)`. Hash is
-expected to be a `bcrypt` hash. `getHash` can be an `async` function explicitly
-or it can return promise or synchronously return the `hash`.
+This plugin exports an abstract class `BasicAuth` for extending by your
+authorization class that know how to fetch your password hashes. To use this
+plugin extend `BasicAuth` and implement at least `getHash(username)`. The resulting
+hash is expected to be a `bcrypt` hash. `getHash` can be an `async` function
+explicitly or it can return promise or synchronously return the `hash`.
 
 ```javascript
 const BasicAuth = require("serviceberry-basic-auth");
@@ -48,16 +49,16 @@ Abstract class
 
   - **charset**
 
-    The character set that the server expects the client use when sending
+    The character set that the server expects the client to use when sending
 	the credentials. Defaults to `UTF-8`. Sets `this.charset`.
 
 ### getHash(username)
 
-**You must extend this class at least implement this method.**
+**You must extend this class and at least implement this method.**
 
-Called by `validate` method for fetching a `bcrypt` password hash for
-`request.credentials.name`. This is can be an `async` function. It should
-return or resolve to a `bcrypt` hash string or throw and error.
+Called by the `validate` method for fetching a `bcrypt` password hash for
+`request.credentials.name`. Can be an `async` function. It should return or
+resolve to a `bcrypt` hash string or throw an error.
 
   - **username** *string*
 
@@ -65,8 +66,8 @@ return or resolve to a `bcrypt` hash string or throw and error.
 
 ### use(request, response)
 
-The handler method. This is the method called by Serviceberry. Sets `credentials`
-on `request`. This is an `async` function.
+The handler method. This is the method called by Serviceberry. Sets `request.credentials`.
+This is an `async` function.
 
   - **request** *object*
 
@@ -78,8 +79,8 @@ on `request`. This is an `async` function.
 
 ### validate(request)
 
-Called by `use` method to validate `request.credentials`. This is an `async`
-function and should return or resolve to a boolean value or throw and error.
+Called by the `use` method to validate `request.credentials`. This is an `async`
+function and should return or resolve to a boolean value or throw an error.
 
   - **request** *object*
 
