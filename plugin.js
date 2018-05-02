@@ -2,14 +2,15 @@
 
 const auth = require("basic-auth"),
 	{HttpError} = require("serviceberry"),
-	bcrypt = require("bcryptjs");
+	bcrypt = require("bcryptjs"),
+	placeholders = /\{([^}]+)\}/g;
 
 class BasicAuth {
 	constructor (realm, charset = "UTF-8") {
 		Object.assign(this, {realm, charset});
 	}
 
-	async use (request, response) {
+	async use (request) {
 		request.credentials = auth(request.incomingMessage);
 
 		if (!request.credentials) {
@@ -28,16 +29,20 @@ class BasicAuth {
 		}
 	}
 
-	async getHash (username) {
+	async getHash () {
 		throw new Error("serviceberry-basic-auth plugin exports an " +
 			"abstract class (BasicAuth). Consumers of the plugin must extend" +
 			"this class and at least implement getHash(username) method.");
 	}
 
-	unauthorized (message) {
+	unauthorized (request, message) {
 		return new HttpError(message, "Unauthorized", {
-			"WWW-Authenticate": `Basic realm="${this.realm}", charset="${this.charset}"`
+			"WWW-Authenticate": `Basic realm="${this.getRealm(request)}", charset="${this.charset}"`
 		});
+	}
+
+	getRealm (request) {
+		return this.realm.replace(placeholders, (match, placeholder) => request.getPathParam(placeholder));
 	}
 }
 

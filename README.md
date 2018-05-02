@@ -19,7 +19,7 @@ plugin extend `BasicAuth` and implement at least `getHash(username)`. The result
 hash is expected to be a `bcrypt` hash. `getHash` can be an `async` function
 explicitly or it can return promise or synchronously return the `hash`.
 
-```javascript
+```js
 const BasicAuth = require("serviceberry-basic-auth");
 
 class Auth extends BasicAuth {
@@ -40,7 +40,10 @@ Abstract class
   - **realm** *string*
 
     Identifies the protection space to the client when the server asks
-	for credentials. Sets `this.realm`.
+	for credentials. Sets `this.realm`. Realm can contain curly brackets
+	which delimit placeholder names which correlate to path parameters.
+	For example `{tenant}'s realm` would result in `bob's realm` when the
+	value of the value of the path parameter `tenant` is `bob`.
 
     From [RFC 7617](https://tools.ietf.org/html/rfc7617#section-2)
 
