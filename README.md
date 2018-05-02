@@ -1,6 +1,11 @@
 serviceberry-basic-auth
 =======================
 
+[![CircleCI](https://circleci.com/gh/bob-gray/serviceberry-basic-auth.svg?style=svg)](https://circleci.com/gh/bob-gray/serviceberry-basic-auth)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/c987369abbd28358af38/test_coverage)](https://codeclimate.com/github/bob-gray/serviceberry-basic-auth/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/c987369abbd28358af38/maintainability)](https://codeclimate.com/github/bob-gray/serviceberry-basic-auth/maintainability)
+[![npm version](https://badge.fury.io/js/serviceberry-basic-auth.svg)](https://badge.fury.io/js/serviceberry-basic-auth)
+
 Basic HTTP Authentication plugin for [Serviceberry](https://serviceberry.js.org).
 
 Install
