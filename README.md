@@ -19,7 +19,7 @@ Usage
 -----
 
 This plugin exports an abstract class `BasicAuth` for extending by your
-authorization class that know how to fetch your password hashes. To use this
+authorization class that knows how to fetch your password hashes. To use this
 plugin extend `BasicAuth` and implement at least `getHash(username)`. The resulting
 hash is expected to be a `bcrypt` hash. `getHash` can be an `async` function
 explicitly or it can return promise or synchronously return the `hash`.

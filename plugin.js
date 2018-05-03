@@ -32,7 +32,7 @@ class BasicAuth {
 	async getHash () {
 		throw new Error("serviceberry-basic-auth plugin exports an " +
 			"abstract class (BasicAuth). Consumers of the plugin must extend" +
-			"this class and at least implement getHash(username) method.");
+			"this class and at least implement the getHash(username) method.");
 	}
 
 	unauthorized (request, message) {
